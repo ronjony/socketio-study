@@ -65,5 +65,20 @@ spray-socketio: 逻辑想得越来越清楚，代码也更好看了。趁着天�
 昨晚开始转入沉思模式，持续约一周（文档时间）。总结、发掘spray-socketio实现过程中架构上的特点及这个架构能回答和拓展哪些业务逻辑上的问题及约束。包括但不限于它顺着Rx所带来的回答和拓展这些逻辑的新的视角。
 
 
+2014-4-3 15:23 来自 微博 weibo.com
+
+在豌豆荚的基于Akka的spray-socketio分片集群的实现中，就是"actor always exists, virtually"，尤其是带状态的actor，或者直接叫entity actor可以很简单地实现分片集群和active/reactive on demand，并且以EventSource的形式更新和保持状态(包括持久化和基于Event重演的状态恢复)。
+
+
+2014-4-7 01:32 来自 微博 weibo.com
+
+用spray-socketio实现大规模有状态长连接集群的技术难点基本都验证完毕，这是实时流式计算的入口。接下来呢？作为基础架构中的MQ，虽然有各种具分布式和高可用的实现，但离我设想的多少有距离。我在考虑要不要用akka来做一个。想了几天了，也写了些原型代码，估算了一下可能一个月出原型，两个月初成。
+
+
+2014-6-18 22:09 来自 微博 weibo.com
+
+#scaladays# parboiled2几天前发布了正式版，用它实现的json parser比parboild1快了6、7倍，比Jackson只慢3倍。parboild是基于PEGs (Parsing Expression Grammars)的解析器。 spray-socketio的packet parser是用它实现的。(imgsrc: @scaladays )
+
+
 
 
