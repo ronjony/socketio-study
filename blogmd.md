@@ -31,3 +31,6 @@ spray-socketio, WebSocker和XHR-Polling的实现差不多了。
 
 在用spray-websocket的client写个简单的性能测试工具，准备初测一下spray-websocket和spray-socketio的server. 算是自己测自己。
 
+2014-3-6 04:04 来自 微博 weibo.com
+
+spray-socketio.。草写了个测试程序，自己测自己。在我的笔记本上初测，client和server分别占到1.5G和2G内存时开到5000个连接。当每批消息数发到12万时开始丢信息，这时平均响应时间为1.3秒。开2000个连接时，可以抗到每批消息20万，平均响应时间3秒。总之，8万/s的响应无压力，且性能与消息量呈线性。
