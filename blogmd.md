@@ -93,6 +93,9 @@ spray-socketio: 逻辑想得越来越清楚，代码也更好看了。趁着天�
 
 Adventure 2014: 1. Spray-WebSocket; 2. Spray-SocketIO; 3. AvPath; 4. Akka based distributed status service; 5. Refined time series reactor; 6. Supported SBT project on NetBeans; 7. Grasped stream.
 
+2015-3-12 16:07 来自 微博 weibo.com
+
+#树莓派集群# 其中的 4 个节点加配了 1.8 吋 60G 的 USB 硬盘。然后起了 4 个节点的 cassandra 集群，然后是 spray-socketio 集群，然后是 astore 集群。不得不说，有这样一个 35 x 30 x 12 cm 大小的 12 节点集群，用来开发、调试实在是太方便了。
 
 
 
