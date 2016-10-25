@@ -21,3 +21,8 @@ spray-socketio有点模样了。不过socket.io的协议写得不严谨，害我
 2014-2-19 22:07 来自 微博 weibo.com
 
 在spray-socketio中暂且引入了RxScala(RxJava的wrapper)，用来以事件(数据)流的方式驱动业务逻辑，代码看上去还行。还没有写让akka调度RxScala的代码，或许会等akka决定采用哪个Rx实现。
+
+2014-2-25 16:00 来自 微博 weibo.com
+
+spray-socketio, WebSocker和XHR-Polling的实现差不多了。
+
