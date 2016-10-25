@@ -26,3 +26,8 @@ spray-socketio有点模样了。不过socket.io的协议写得不严谨，害我
 
 spray-socketio, WebSocker和XHR-Polling的实现差不多了。
 
+
+2014-3-4 22:05 来自 微博 weibo.com
+
+在用spray-websocket的client写个简单的性能测试工具，准备初测一下spray-websocket和spray-socketio的server. 算是自己测自己。
+
