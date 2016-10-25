@@ -77,7 +77,12 @@ spray-socketio: 逻辑想得越来越清楚，代码也更好看了。趁着天�
 
 2014-6-18 22:09 来自 微博 weibo.com
 
-#scaladays# parboiled2几天前发布了正式版，用它实现的json parser比parboild1快了6、7倍，比Jackson只慢3倍。parboild是基于PEGs (Parsing Expression Grammars)的解析器。 spray-socketio的packet parser是用它实现的。(imgsrc: @scaladays )
+<#scaladays#>parboiled2几天前发布了正式版，用它实现的json parser比parboild1快了6、7倍，比Jackson只慢3倍。parboild是基于PEGs (Parsing Expression Grammars)的解析器。 spray-socketio的packet parser是用它实现的。
+
+
+2014-10-19 00:33 来自 微博 weibo.com
+
+重构后的 spray-socketio，Namespace 成为集群内的 sharding actor，其实，它可以看作一个通用的 MQ 的起点，供集群内外的业务逻辑订阅。经过这次重构，整个集群的架构更加合理和清晰，整个人也觉得好了。刚把重构后的 benchmark 跑起来了，在笔记本上一共起了 5 个节点和一个 Driver。正好历时一周。
 
 
 
