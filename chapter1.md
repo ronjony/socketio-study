@@ -7,7 +7,7 @@ this is the test
 md字体中的颜色如何确定
 ### socketio的作用
 ```
-<blue>使用websocket协议实现，使客户端与服务器端进行双向通信</blue>
+<color = blue>使用websocket协议实现，使客户端与服务器端进行双向通信</color>
 
 ```
 
