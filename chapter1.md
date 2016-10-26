@@ -6,7 +6,10 @@ this is the test
 
 md字体中的颜色如何确定
 ### socketio的作用
+```
 使用websocket协议实现，使客户端与服务器端进行双向通信
+
+```
 
 ### socketio的实现版本
 
