@@ -59,7 +59,7 @@ To run cluster benchmark (0.2.x):
 
 Since spray-socketio is under heavy developing, with the spray-socketio version changed or snapshot version, you may need to cleanup cassandra by:
 
-```java
+```
 cqlsh
 cqlsh> select * from system.schema_keyspaces;
 cqlsh> drop keyspace akka;
