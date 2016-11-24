@@ -43,23 +43,26 @@ To run cluster benchmark (0.1.x):
 
 To run cluster benchmark (0.2.x):
 
-Install cassandra and start it.
-sbt clean compile dist
-cd examples/socketio-benchmark/target/universal/
-unzip bench_cluster-*.zip
-cd bench_cluster-xxxx/bin
-./start_cluster.sh sess1 2551
-./start_cluster.sh sess2
-./start_cluster.sh topic1
-./start_cluster.sh tran
-./start_cluster.sh busi
-./start_driver.sh
-cd ../logs
-tail -f rt_driver.log
+1. Install cassandra and start it.
+1. sbt clean compile dist
+1. cd examples/socketio-benchmark/target/universal/
+1. unzip bench_cluster-*.zip
+1. cd bench_cluster-xxxx/bin
+1. ./start_cluster.sh sess1 2551
+1. ./start_cluster.sh sess2
+1. ./start_cluster.sh topic1
+1. ./start_cluster.sh tran
+1. ./start_cluster.sh busi
+1. ./start_driver.sh
+1. cd ../logs
+1. tail -f rt_driver.log
+
 Since spray-socketio is under heavy developing, with the spray-socketio version changed or snapshot version, you may need to cleanup cassandra by:
 
+```sql
 cqlsh
 cqlsh> select * from system.schema_keyspaces;
 cqlsh> drop keyspace akka;
 cqlsh> drop keyspace akka_snapshot;
 cqlsh> quit;
+```
