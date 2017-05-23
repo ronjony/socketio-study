@@ -1,4 +1,4 @@
-spray-client
+##spray-client
 
 spray-client provides high-level HTTP client functionality by adding another logic layer on top of the relatively basic spray-can HTTP Client APIs. It doesn’t yet provide all the features that we’d like to include eventually, but it should already be of some utility for many applications.
 
