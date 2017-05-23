@@ -91,34 +91,37 @@ val pipeline: HttpRequest => Future[OrderConfirmation] = ( addHeader("X-My-Speci
 val response: Future[OrderConfirmation] = pipeline(Post("http://example.com/orders", Order(42)))
 ```
 
-This defines a more complex pipeline that takes an HttpRequest, adds headers and compresses its entity before dispatching it to the target server (the sendReceive element of the pipeline). The response coming back is then decompressed and its entity unmarshalled.
+This defines a more complex pipeline that takes an `HttpRequest`, adds headers and compresses its entity before dispatching it to the target server (the `sendReceive` element of the pipeline). The response coming back is then decompressed and its entity unmarshalled.
 
-When you import spray.client.pipelining._ you not only get easy access to sendReceive but also all elements of the spray-httpx Request Building and Response Transformation traits. Therefore you can easily create requests via something like Post("/orders", Order(42)), which is not only shorter but also provides for automatic marshalling of custom types.
+When you import `spray.client.pipelining._` you not only get easy access to `sendReceive` but also all elements of the spray-httpx Request Building and Response Transformation traits. Therefore you can easily create requests via something like Post("/orders", Order(42)), which is not only shorter but also provides for automatic marshalling of custom types.
 
-Example
+###Example
 
 The /examples/spray-client/ directory of the spray repository contains an example project for spray-client.
 
-simple-spray-client
+####simple-spray-client
 
 This example shows off how to use spray-client by querying Google’s Elevation API to retrieve the elevation of Mt. Everest.
 
 Follow these steps to run it on your machine:
 
-Clone the spray repository:
-
+1. Clone the spray repository:
+```
 git clone git://github.com/spray/spray.git
+```
 
-Change into the base directory:
-
+2. Change into the base directory:
+```
 cd spray
+```
 
-Run SBT:
+3. Run SBT:
 
+```
 sbt "project simple-spray-client" run
+```
 
-(If this doesn’t work for you your SBT runner cannot deal with grouped arguments. In this case you’ll have to run the commands project simple-spray-client and run sequentially “inside” of SBT.)
+(If this doesn’t work for you your SBT runner cannot deal with grouped arguments. In this case you’ll have to run the commands project `simple-spray-client` and run sequentially “inside” of SBT.)
 
-Next Previous
 
  
