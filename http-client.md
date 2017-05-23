@@ -26,7 +26,7 @@ Apart from the Scala library (see Current Versions chapter) spray-client depends
 
 * spray-util
 
-akka-actor 2.1.x (with ‘provided’ scope, i.e. you need to pull it in yourself)
+* akka-actor 2.1.x (with ‘provided’ scope, i.e. you need to pull it in yourself)
 
 Installation
 
