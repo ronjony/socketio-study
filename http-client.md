@@ -1,16 +1,16 @@
 ##spray-client
 
-spray-client provides high-level HTTP client functionality by adding another logic layer on top of the relatively basic spray-can HTTP Client APIs. It doesn’t yet provide all the features that we’d like to include eventually, but it should already be of some utility for many applications.
+spray-client provides high-level HTTP client functionality by adding another logic layer on top of the relatively basic spray-can `HTTP Client` APIs. It doesn’t yet provide all the features that we’d like to include eventually, but it should already be of some utility for many applications.
 
 Currently it allows you to wrap any one of the three spray-can client-side API levels with a pipelining logic, which provides for:
 
-Convenient request building
+* Convenient request building
 
-Authentication
+* Authentication
 
-Compression / Decompression
+* Compression / Decompression
 
-Marshalling / Unmarshalling from and to your custom types
+* Marshalling / Unmarshalling from and to your custom types
 
 Currently, HTTP streaming (i.e. chunked transfer encoding) is not yet supported on the spray-clientlevel (even though the underlying spray-can HTTP Client APIs do support it (the host- and request-level APIs only for responses)), i.e. you cannot send chunked requests and the response-chunk-aggregation-limit config setting for the underlying transport must be non-zero).
 
