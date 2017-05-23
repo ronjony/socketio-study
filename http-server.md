@@ -181,12 +181,14 @@ There are three exceptions:
 The ``Content-Type`` header has special status in spray since its value is part of the ``HttpEntity`` model class. Even though the header also remains in the headers list of the ``HttpRequest`` sprays higher layers (like ``spray-routing``) only work with the ``ContentType`` value contained in the ``HttpEntity``.
 
 ###HTTP Pipelining
+___
 
 spray-can fully supports HTTP pipelining. If the configured ``pipelining-limit`` is greater than one a connection actor will accept several requests in a row (coming in across a single connection) and dispatch them to the application even before the first one has been responded to. This means that several requests will potentially be handled by the application at the same time.
 
 Since in many asynchronous applications request handling times can be somewhat undeterministic spray-can takes care of properly ordering all responses coming in from your application before sending them out to "the wire". I.e. your application will "see" requests in the order they are coming in but is not required to itself uphold this order when generating responses.
 
 ###SSL Support
+___
 
 If enabled via the ``ssl-encryption`` config setting the spray-can connection actors pipe all IO traffic through an ``SslTlsSupport`` module, which can perform transparent SSL/TLS encryption. This module is configured via the implicit ``ServerSSLEngineProvider`` member on the`` Http.Bind ``command message. An `ServerSSLEngineProvider` is essentially a function `PipelineContext ⇒ Option[SSLEngine]`, which determines whether encryption is to be performed and, if so, which `javax.net.ssl.SSLEngine` instance is to be used.
 
