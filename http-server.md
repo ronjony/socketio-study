@@ -200,8 +200,8 @@ If you'd like to apply some custom configuration to your `SSLEngine` instances a
 EngineProvider creation also relies on an implicitly available `SSLContextProvider`, which is defined like this:
 
 ```scala
-.. includecode:: /../spray-io/src/main/scala/spray/io/SslTlsSupport.scala 
-:snippet: source-quote-SSLContextProvider
+.. includecode:: /../sprayio/src/main/scala/spray/io
+/SslTlsSupport.scala :snippet: source-quote-SSLContextProvider
 ```
 
 The default `SSLContextProvider` simply provides an implicitly available "constant" `SSLContext`, by default the `SSLContext.getDefault` is used. This means that the easiest way to have the server use a custom `SSLContext` is to simply bring one into scope implicitly:
