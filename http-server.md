@@ -194,14 +194,14 @@ If enabled via the ``ssl-encryption`` config setting the spray-can connection ac
 
 If you'd like to apply some custom configuration to your `SSLEngine` instances an easy way would be to bring a custom engine provider into scope, e.g. like this:
 
-```scala
+```
 .. includecode:: code/docs/HttpServerExamplesSpec.scala 
 :snippet: sslengine-config
 ```
 
 EngineProvider creation also relies on an implicitly available `SSLContextProvider`, which is defined like this:
 
-```scala
+```
 .. includecode:: /../sprayio/src/main/scala/spray/io
 /SslTlsSupport.scala :snippet: source-quote-SSLContextProvider
 ```
