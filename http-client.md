@@ -28,27 +28,68 @@ Apart from the Scala library (see Current Versions chapter) spray-client depends
 
 * akka-actor 2.1.x (with ‘provided’ scope, i.e. you need to pull it in yourself)
 
-Installation
+###Installation
 
 The Maven Repository chapter contains all the info about how to pull spray-client into your classpath.
 
-Usage
+###Usage
 
 The simplest of all use cases is this:
 
-import spray.http._ import spray.client.pipelining._ implicit val system = ActorSystem() import system.dispatcher // execution context for futures val pipeline: HttpRequest => Future[HttpResponse] = sendReceive val response: Future[HttpResponse] = pipeline(Get("http://spray.io/"))
+```
+import spray.http._ 
+import spray.client.pipelining._ 
 
-The central element of a spray-client pipeline is sendReceive, which produces a function HttpRequest => Future[HttpResponse] (this function type is also aliased to SendReceive). When called without parameters sendReceive will automatically use the IO(Http) extension of an implicitly available ActorSystem to access the spray-can Request-level API. All requests must therefore either carry an absolute URI or an explicit Host header.
+implicit val system = ActorSystem() 
+import system.dispatcher // execution context for futures
+ 
+val pipeline: HttpRequest => Future[HttpResponse] = sendReceive 
+
+val response:Future[HttpResponse]
+=pipeline(Get("http://spray.io/"))
+```
+
+The central element of a spray-client pipeline is `sendReceive`, which produces a function `HttpRequest => Future[HttpResponse]` (this function type is also aliased to SendReceive). When called without parameters `sendReceive` will automatically use the `IO(Http)` extension of an implicitly available `ActorSystem` to access the spray-can `Request-level API`. All requests must therefore either carry an absolute URI or an explicit `Host` header.
 
 In order to wrap pipelining around spray-can‘s Host-level API you need to tell sendReceive which host connector to use:
-
-import akka.io.IO import akka.pattern.ask import spray.can.Http import spray.http._ import spray.client.pipelining._ implicit val system = ActorSystem() import system.dispatcher // execution context for futures val pipeline: Future[SendReceive] = for ( Http.HostConnectorInfo(connector, _) <- IO(Http) ? Http.HostConnectorSetup("www.spray.io", port = 80) ) yield sendReceive(connector) val request = Get("/") val response: Future[HttpResponse] = pipeline.flatMap(_(request))
+```
+import akka.io.IO 
+import akka.pattern.ask 
+import spray.can.Http 
+import spray.http._ 
+import spray.client.pipelining._ 
+implicit val system = ActorSystem() 
+import system.dispatcher // execution context for futures 
+val pipeline: Future[SendReceive] = for ( Http.HostConnectorInfo(connector, _) <- IO(Http) ? Http.HostConnectorSetup("www.spray.io", port = 80) 
+) yield sendReceive(connector) 
+val request = Get("/") 
+val response: Future[HttpResponse] = pipeline.flatMap(_(request))
+```
 
 You can then fire requests with relative URIs and without Host header into the pipeline.
 
-A pipeline of type HttpRequest => Future[HttpResponse] is nice start but leaves the creation of requests and interpretation of responses completely to you. Many times you actually want to send and/or receive custom objects that need to be serialized to HTTP requests or deserialized from HTTP responses. Check out this snippet for an example of what spray-client pipelining can do for you in that regard:
-
-import spray.http._ import spray.json.DefaultJsonProtocol import spray.httpx.encoding.{Gzip, Deflate} import spray.httpx.SprayJsonSupport._ import spray.client.pipelining._ case class Order(id: Int) case class OrderConfirmation(id: Int) object MyJsonProtocol extends DefaultJsonProtocol { implicit val orderFormat = jsonFormat1(Order) implicit val orderConfirmationFormat = jsonFormat1(OrderConfirmation) } import MyJsonProtocol._ implicit val system = ActorSystem() import system.dispatcher // execution context for futures val pipeline: HttpRequest => Future[OrderConfirmation] = ( addHeader("X-My-Special-Header", "fancy-value") ~> addCredentials(BasicHttpCredentials("bob", "secret")) ~> encode(Gzip) ~> sendReceive ~> decode(Deflate) ~> unmarshal[OrderConfirmation] ) val response: Future[OrderConfirmation] = pipeline(Post("http://example.com/orders", Order(42)))
+A pipeline of `type HttpRequest => Future[HttpResponse]` is nice start but leaves the creation of requests and interpretation of responses completely to you. Many times you actually want to send and/or receive custom objects that need to be serialized to HTTP requests or deserialized from HTTP responses. Check out this snippet for an example of what spray-client pipelining can do for you in that regard:
+```
+import spray.http._ 
+import spray.json.DefaultJsonProtocol 
+import spray.httpx.encoding.{Gzip, Deflate} 
+import spray.httpx.SprayJsonSupport._ 
+import spray.client.pipelining._ 
+case class Order(id: Int) 
+case class OrderConfirmation(id: Int) 
+object MyJsonProtocol extends DefaultJsonProtocol { implicit val orderFormat = jsonFormat1(Order) 
+implicit val orderConfirmationFormat = jsonFormat1(OrderConfirmation) } 
+import MyJsonProtocol._ implicit 
+val system = ActorSystem() 
+import system.dispatcher // execution context for futures 
+val pipeline: HttpRequest => Future[OrderConfirmation] = ( addHeader("X-My-Special-Header", "fancy-value") 
+~> addCredentials(BasicHttpCredentials("bob", "secret"))
+ ~> encode(Gzip) 
+~> sendReceive 
+~> decode(Deflate)
+ ~> unmarshal[OrderConfirmation] ) 
+val response: Future[OrderConfirmation] = pipeline(Post("http://example.com/orders", Order(42)))
+```
 
 This defines a more complex pipeline that takes an HttpRequest, adds headers and compresses its entity before dispatching it to the target server (the sendReceive element of the pipeline). The response coming back is then decompressed and its entity unmarshalled.
 
