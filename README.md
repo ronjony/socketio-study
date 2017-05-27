@@ -23,6 +23,7 @@ spray-socketio是邓草原的相关作品，分析大师的作品对于自己的
 3. netty-socketio实现细节及demo
 4. akka 的相关技术及应用细节  
 5. spray 的相关技术及应用细节
+6. spray-websocket实现细节
 
 ### 学习时间
 以前的时间都不用算了，spray-socketio基本上也已经精读了一遍，所有代码已经基本理解，逻辑层次也算是清楚了。
