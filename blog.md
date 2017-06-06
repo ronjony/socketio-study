@@ -5,7 +5,7 @@
 ### 网站模板类
 
 1. \[ebay\][http://ebay.github.io](http://ebay.github.io)
-2. \[akka\]http://akka.io
+2. \[akka\][http://akka.i](http://akka.io)o
 
 ### 技术相关类
 
