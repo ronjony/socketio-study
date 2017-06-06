@@ -5,9 +5,7 @@
 ### 网站模板类
 
 1. \[ebay\][http://ebay.github.io](http://ebay.github.io)
-2. \[akka\][http://akka.i](http://akka.io)o 
-
-
+2. \[akka\][http://akka.i](http://akka.io)o  
 
 ```
 新的版本好吗？我也不知道呀，一切都在实践中确定吧。
